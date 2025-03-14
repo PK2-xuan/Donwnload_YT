@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar MP3</title>
+    <style>
+        .spinner {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            display: none; /* Hidden initially */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Descargar música de YouTube en MP3</h1>
+
+    <!-- Formulario para ingresar la URL -->
+    <!-- <form action="/download" method="POST" id="download-form">
+        <label for="url">Ingresa la URL del video de YouTube:</label><br>
+        <input type="text" id="url" name="url" placeholder="https://www.youtube.com/watch?v=xxxxxxx" required><br><br>
+        <input type="submit" value="Descargar MP3">
+    </form> -->
+
+    <form action="/download" method="POST" id="download-form">
+      <label for="url">Ingresa la URL del video de YouTube:</label><br>
+      <input type="text" id="url" name="url" placeholder="https://www.youtube.com/watch?v=xxxxxxx" required><br><br>
+  
+      <label for="format">Selecciona el tipo de descarga:</label><br>
+      <select name="format" id="format">
+          <option value="audio">Música (MP3)</option>
+          <option value="video">Video (MP4)</option>
+      </select><br><br>
+  
+      <input type="submit" value="Descargar">
+  </form>
+  
+
+    <!-- Spinner que aparece mientras se descarga -->
+    <div id="spinner" class="spinner"></div>
+
+    <!-- Mensaje de éxito o error -->
+    {% if message %}
+        <div class="message">{{ message }}</div>
+    {% endif %}
+</body>
+
+<script>
+    const form = document.getElementById("download-form");
+    const spinner = document.getElementById("spinner");
+
+    form.onsubmit = function() {
+        spinner.style.display = "inline-block";  // Mostrar el spinner
+    }
+</script>
+
+</html>
