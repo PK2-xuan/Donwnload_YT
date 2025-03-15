@@ -84,7 +84,9 @@ def download():
                 mp4_file_path = get_unique_filename(mp4_file_path)  # Asegura un nombre único para el archivo final
 
                 # Usar FFmpeg para convertir el archivo WebM a MP4
-                subprocess.run(["ffmpeg", "-i", temp_file_path, "-c:v", "libx264", "-c:a", "aac", "-strict", "experimental", mp4_file_path])
+                ffmpeg_path = os.path.join(os.getcwd(), 'bin', 'ffmpeg.exe')  # Ruta al ejecutable ffmpeg.exe dentro de la carpeta bin
+
+                subprocess.run([ffmpeg_path, "-i", temp_file_path, "-c:v", "libx264", "-c:a", "aac", "-strict", "experimental", mp4_file_path])
 
                 # Eliminar el archivo temporal webm después de la conversión
                 os.remove(temp_file_path)
