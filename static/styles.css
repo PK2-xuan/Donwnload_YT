@@ -11,12 +11,14 @@ body {
 
 .form-container {
   text-align: center;
+  padding-bottom: 1rem;
 }
 
 .title {
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 5vw, 3rem);
   font-weight: bold;
   color: var(--primary-color);
+  padding-bottom: 1rem;
 }
 
 .subtitle {
@@ -50,4 +52,50 @@ body {
 .format-btn:hover {
   background-color: var(--hover-color);
   opacity: 1; /* Botón se vuelve completamente visible al hacer hover */
+}
+
+
+/* Estilo para el spinner (preloader) */
+#spinner {
+  position: fixed; /* Hace que el spinner se quede fijo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  z-index: 9999; /* Asegura que esté encima de todo */
+  display: none; /* Inicia oculto */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilo del spinner */
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #9b4de5; /* Color de la parte superior */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+/* Animación del spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.message {
+  margin-top: 20px;
+  font-size: 16px;
+  color : wheat
+}
+
+.btn-color{
+  background-color: var(--primary-color);
+}
+.btn-color:hover{
+  background-color: var(--hover-color);
+  color: #f3f3f3;
 }
