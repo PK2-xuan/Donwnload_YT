@@ -84,7 +84,9 @@ def download():
                 mp4_file_path = get_unique_filename(mp4_file_path)  # Asegura un nombre único para el archivo final
 
                 # Usar FFmpeg para convertir el archivo WebM a MP4
-                subprocess.run(["ffmpeg", "-i", temp_file_path, "-c:v", "libx264", "-c:a", "aac", "-strict", "experimental", mp4_file_path])
+                ffmpeg_path = os.path.join(os.getcwd(), 'bin', 'ffmpeg.exe')  # Ruta al ejecutable ffmpeg.exe dentro de la carpeta bin
+
+                subprocess.run([ffmpeg_path, "-i", temp_file_path, "-c:v", "libx264", "-c:a", "aac", "-strict", "experimental", mp4_file_path])
 
                 # Eliminar el archivo temporal webm después de la conversión
                 os.remove(temp_file_path)
@@ -93,10 +95,14 @@ def download():
                 return render_template("index.html", message=f"El archivo {mp4_file_path} ha sido descargado y convertido exitosamente.", url="")
 
         # Si el formato es audio, el archivo ya está descargado
-        return render_template("index.html", message=f"El archivo {file_path} ha sido descargado exitosamente.", url="")
+        return render_template("index.html", message=f"El archivo ha sido descargado exitosamente.", url="")
 
     except Exception as e:
-        return render_template("index.html", message=f"Error al descargar: {str(e)}", url="")
+        return render_template("index.html", message=f"Error al descargar", url="")
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
+
+#actualizar la libreria de yt-dlp
+    #pip install --upgrade yt-dlp
+
